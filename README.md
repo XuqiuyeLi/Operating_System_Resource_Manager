@@ -1,2 +1,8 @@
-# Operating_System_Resource_Manager
-Resource allocation using both an optimistic resource manager and the banker's algorithm of Dijistra. [Operating System Lab]
+# A Resource Manager for Operating System
+
+## Overview
+- Resource allocation using both an optimistic resource manager and the banker's algorithm of Dijistra. 
+
+## Input 
+## Output
+## How to run
