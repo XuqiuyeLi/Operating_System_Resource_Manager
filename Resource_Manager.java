@@ -1,28 +1,23 @@
-public class Resource_Manager{
-	int cycle;
+public class Optimistic_Manager{
 	private static Map<Integer, Integer> resources;
-	private static String[] tasks;
-	private static Queue<String> pendingTasks;
+	private static List<Queue<List<String>>> tasks;
+	private static Queue<List<String>> waitingRequests;
+	private static int cycle;
 
-	/*
-	 * Put the total available resources into a HashMap
-	 */
-	Resource_Manager(int num_of_tasks, int num_of_resources, int[] resources, String taskString){
-		// initialize cycle, resources, and tasks
-		int cycle = 0;
-		tasks = new String[num_of_tasks];
-		resources = new HashMap<Integer, Integer>();
-		pendingTasks = new LinkedList<String>();
-
-		// fill the tasks array and resources map from the input file
-		tasks = taskString.split("\n");
-		for(int i = 1; i <= num_of_resources; i++){
-			resources.put(i, resources[i - 1]);
-		}
+	Resource_Manager(List<Queue<List<String>>> tasks, Map<Integer, Integer> resources){
+		this.resources = resourceMap;
+		this.tasks = tasks;
+		this.cycle = 0;
+		this.waitingRequests = new Queue<List<String>>();
 	}
 
+	// Optimistic Manager does not check initial claim
 	public static boolean initiate(){
-
+		for(int i = 1; i <= tasks.size(); i++){
+			// process the initate command from each task
+			tasks.get(i).poll();
+		}
+		cycle++;
 	}
 	public static boolean request(){
 		
@@ -38,5 +33,9 @@ public class Resource_Manager{
 	 * Put the total available resources into a HashMap
 	 */
 	public static void detectDeadlock(){
+	}
+
+
+	public static void getResult(){
 	}
 }

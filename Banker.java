@@ -2,20 +2,42 @@
 
 public class Banker(){
 	private static Map<Integer, Integer> resources;
-	String request;
+	private static List<Queue<List<String>>> tasks;
+	private static int cycle;
 
-	Banker(Map<Integer, Integer> resourceMap, String request){
+	Banker(Map<Integer, Integer> resourceMap, List<Queue<List<String>>> tasks){
 		this.resources = resourceMap;
-		this.request = request;
+		this.tasks = tasks;
+		this.cycle = 0;
 	}
 	/*
-	 * If the task's initial claim exceeds the resource present 
-	 * or during execution, a task's requests exceed its claims
+	 * If the task's initial claim exceeds the resource present or during execution, 
+	 * a task's requests exceed its claims, print error message, abort the task, release all its resources
 	 */
-	public boolean errorCheck(){
+	public boolean errorCheck(List<String> task){
+		String errorMessage = "Aborted";
+	}
+
+	public boolean isSafe(){
 
 	}
-	public boolean isSafe(){
+
+	public static boolean initiate(){
+
+	}
+	public static boolean request(){
+		
+	}
+	public static boolean release(){
+
+	}
+	public static boolean terminate(){
+
+	}
+	// return a string of Banker pass result
+	public static String getResult(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("       Banker       \n");
 
 	}
 }
