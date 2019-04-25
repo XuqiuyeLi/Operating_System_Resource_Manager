@@ -1,6 +1,6 @@
 // Functions for banker's
 
-public class Banker(){
+public class Banker {
 	private static Map<Integer, Integer> resources;
 	private static List<Queue<List<String>>> tasks;
 	private static int cycle;
