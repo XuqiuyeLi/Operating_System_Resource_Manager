@@ -16,13 +16,15 @@ public class Task{
     }
 
     public boolean hasNext(){
-    	while(!taskQueue.isEmpty()){
+    	while(!remaining.isEmpty()){
     		return true;
     	}
     	return false;
     }
     public String getNext(){
-    	return taskQueue.poll();
+    	String next = remaining.poll();
+    	processed.add(next);
+    	return next;
     }
     // check if current task is aborted already
     public boolean isAborted(){
