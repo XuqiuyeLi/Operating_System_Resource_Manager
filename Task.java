@@ -1,13 +1,17 @@
+import java.io.*;
+import java.util.*;
+
+
 public class Task{
-	ArrayList<String> processed; // resouce already allocated
-	Queue<String> remaining; // to be processed
+	List<List<String>> processed; // resouce already allocated
+	Queue<List<String>> remaining; // to be processed
 	int id; 
 	int terminateTime; // the total cycle when this task terminates
 	int blocked; // number of blocked tasks
-	boolean aborted; // if this task is aborted or not
+	Boolean aborted; // if this task is aborted or not
 
-	public Task(int i, Queue<String> tasks){
-		processed = new ArrayList<String>();
+	public Task(int i, Queue<List<String>> tasks){
+		processed = new ArrayList<List<String>>();
 		remaining = tasks;
 		id = i;
         aborted = false;
@@ -15,21 +19,36 @@ public class Task{
         terminateTime = 0;
     }
 
-    public boolean hasNext(){
+    public Boolean hasNext(){
     	while(!remaining.isEmpty()){
     		return true;
     	}
     	return false;
     }
-    public String getNext(){
-    	String next = remaining.poll();
+    public List<String> getNext(){
+    	List<String> next = remaining.poll();
     	processed.add(next);
     	return next;
     }
+
+    public Boolean isFinished(){
+    	String instruction = getNext().get(0);
+        if(instruction.contains("terminate") || aborted == true){
+            return true;
+        }
+        else {
+        	return false;
+        }
+    }
+
     // check if current task is aborted already
-    public boolean isAborted(){
-        if(aborted == true) return true;
-        else return false;
+    public Boolean isAborted(){
+        if(aborted == true) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
     // terminate current task and set terminate time
     public void terminateTask(int time){
@@ -42,6 +61,11 @@ public class Task{
         blocked= 0;
         //System.out.println("Banker aborts task(s) "+id+" before run begins: claim for resource");
     }
+
+    public void block() {
+        blocked++;
+    }
+
     public void printResult(){
     	if(aborted){
     		System.out.println("Task " + id + "      " + "Aborted");
